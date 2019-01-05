@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 21017
+      database: todos-dev
+
+server:
+  port: 5050
