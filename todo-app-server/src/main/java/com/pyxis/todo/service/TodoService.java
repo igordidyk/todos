@@ -3,6 +3,7 @@ package com.pyxis.todo.service;
 import com.pyxis.todo.domain.model.Todo;
 import com.pyxis.todo.domain.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,13 @@ import static org.springframework.data.domain.Sort.Direction;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TodoService{
     private final TodoRepository todoRepository;
 
     @ResponseStatus(value = HttpStatus.CREATED)
     public Todo create(Todo todo){
+        log.info("Todo: {} created successfully", todo.toString());
         return todoRepository.save(todo);
     }
 
@@ -28,15 +31,16 @@ public class TodoService{
         return todoRepository.findAll(new Sort(Direction.DESC, "createAt"));
     }
 
-    @ResponseStatus(value = HttpStatus.OK)
+//    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<Todo> findById(String id) {
         return todoRepository.findById(id)
                 .map(todo -> ResponseEntity.ok().body(todo))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @ResponseStatus(value = HttpStatus.OK)
+//    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<Todo> update(String id, Todo todo) {
+        log.info("Todo: {} updated successfully", id);
         return todoRepository.findById(id)
                 .map(data -> {
                     data.setTitle(todo.getTitle());
