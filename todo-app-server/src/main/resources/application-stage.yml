@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${USERNAME}:${PASSWORD}@ds157654.mlab.com:57654/todoapp/?authMechanism=SCRAM-SHA-1
+
+server:
+  port: 8000
+

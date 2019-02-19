@@ -1,9 +1,7 @@
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 21017
-      database: todos-dev
+      uri: mongodb://localhost:27017/todos-dev
 
 server:
   port: 5050
